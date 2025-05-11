@@ -163,7 +163,7 @@ exports.login = async (req, res) => {
             path: '/',
             sameSite: 'lax', // Adjust as needed
             maxAge: 24 * 60 * 60 * 4000, // 4 days
-            domain: isProduction ? 'https://zuummusicpr.com' : 'http://localhost:3000'
+            // domain: isProduction ? 'https://zuummusicpr.com' : 'http://localhost:3000'
         }).sendStatus(200);
 
         // res.json({ message: 'Login successful', token });
