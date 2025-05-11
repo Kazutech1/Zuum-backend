@@ -154,16 +154,21 @@ exports.login = async (req, res) => {
         if (!user.email_verified) return res.status(406).json({ error: 'Email is not verified' });
 
         const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1d' });
+        const isProduction = process.env.NODE_ENV === 'production'; // Set to true if using HTTPS
 
+        console.log("token: ", token);
         res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // Set to true if using HTTPS
-            sameSite: 'strict', // Adjust as needed
-            maxAge: 24 * 60 * 60 * 4000 // 4 days
-        });
+            secure: isProduction,
+            path: '/',
+            sameSite: 'lax', // Adjust as needed
+            maxAge: 24 * 60 * 60 * 4000, // 4 days
+            domain: isProduction ? 'https://zuummusicpr.com' : 'http://localhost:3000'
+        }).sendStatus(200);
 
-        res.json({ message: 'Login successful', token });
+        // res.json({ message: 'Login successful', token });
     } catch (error) {
+        console.log(error.message);
         res.status(500).json({ error: error.message });
     }
 };
