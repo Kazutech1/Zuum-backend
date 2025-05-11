@@ -161,7 +161,7 @@ exports.login = async (req, res) => {
             httpOnly: true,
             secure: isProduction,
             path: '/',
-            sameSite: 'lax', // Adjust as needed
+            sameSite: 'none', // Adjust as needed
             maxAge: 24 * 60 * 60 * 4000, // 4 days
             // domain: isProduction ? 'https://zuummusicpr.com' : 'http://localhost:3000'
         }).sendStatus(200);
