@@ -140,6 +140,14 @@ exports.onlyDev = (req, res, next) => {
 exports.adminTokenRequired = async (req, res, next) => {
     try {
         // Token extra tion from cookie
+        console.log('All Headers:', req.headers);
+  
+  // Log specific headers you're interested in
+  console.log('Cookie Header:', req.headers.cookie);
+  console.log('Authorization Header:', req.headers.authorization);
+  
+  // Check if your token exists in cookies (if you're using cookie-parser middleware)
+  console.log('Cookie parsed:', req.cookies);
         const token = req.cookies.token;
         if (!token) {
             return res.status(401).json({ error: 'No valid token provided' });
@@ -173,6 +181,14 @@ exports.adminTokenRequired = async (req, res, next) => {
 exports.tokenProfileRequired = async (req, res, next) => {
     try {
         // Token extra tion from cookie
+        console.log('All Headers:', req.headers);
+  
+  // Log specific headers you're interested in
+  console.log('Cookie Header:', req.headers.cookie);
+  console.log('Authorization Header:', req.headers.authorization);
+  
+  // Check if your token exists in cookies (if you're using cookie-parser middleware)
+  console.log('Cookie parsed:', req.cookies);
         const token = req.cookies.token;
         if (!token) {
             return res.status(401).json({ error: 'No valid token provided' });
