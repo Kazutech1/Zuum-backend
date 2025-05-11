@@ -163,7 +163,7 @@ exports.login = async (req, res) => {
             path: '/',
             sameSite: isProduction ? 'none' : 'lax', // Use 'lax' in development
             maxAge: 24 * 60 * 60 * 1000, // 4 days (fixed millisecond calculation)
-            domain: isProduction ? 'zuummusicpr.com' : 'localhost' // Fix the domain format
+            // domain: isProduction ? 'zuummusicpr.com' : 'localhost' // Fix the domain format
         }).status(200).json({ success: true, message: 'Cookie set' }); // Send back a response body
 
         // res.json({ message: 'Login successful', token });
