@@ -161,10 +161,10 @@ exports.login = async (req, res) => {
             httpOnly: true,
             secure: isProduction,
             path: '/',
-            sameSite: 'none', // Adjust as needed
-            maxAge: 24 * 60 * 60 * 4000, // 4 days
-            // domain: isProduction ? 'https://zuummusicpr.com' : 'http://localhost:3000'
-        }).sendStatus(200);
+            sameSite: isProduction ? 'none' : 'lax', // Use 'lax' in development
+            maxAge: 24 * 60 * 60 * 1000, // 4 days (fixed millisecond calculation)
+            domain: isProduction ? 'zuummusicpr.com' : 'localhost' // Fix the domain format
+        }).status(200).json({ success: true, message: 'Cookie set' }); // Send back a response body
 
         // res.json({ message: 'Login successful', token });
     } catch (error) {
