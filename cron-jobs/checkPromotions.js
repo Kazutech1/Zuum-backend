@@ -10,7 +10,7 @@ const checkPromotionExpirations = async () => {
             SELECT pt.id, pt.user_id, pt.post_id, pt.timeline, pt.type, pt.amount
             FROM promotion_transactions pt
             JOIN profile p ON p.user_id = pt.user_id
-            WHERE pt.active = $1
+            WHERE pt.active = true
         `);
 
         const currentDate = new Date();
